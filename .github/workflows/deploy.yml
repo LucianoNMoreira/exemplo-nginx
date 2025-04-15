@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+# Quando executar (push na branch main)
+on:
+  push:
+    branches:
+      - main
+
+# Etapas
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clonar repositório
+      - uses: actions/checkout@v3
+
+      # Publicar no GitHub Pages
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Token gerado pelo automaticamente pelo GitHub
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Origem dos arquivos a serem publicados
+          publish_dir: ./
